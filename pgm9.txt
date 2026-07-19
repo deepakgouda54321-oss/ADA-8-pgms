@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<time.h>
+int main() {
+    int a[10], n, i, j, min, t;
+    clock_t s, e;
+    printf("Enter number of elements: ");
+    scanf("%d",&n);
+    printf("Enter elements:\n");
+    for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+    s = clock();
+    for(i=0;i<n-1;i++){
+        min=i;
+        for(j=i+1;j<n;j++)
+            if(a[j]<a[min])
+            min=j;
+            t=a[i];
+            a[i]=a[min];
+            a[min]=t;
+    }
+    e = clock();
+    printf("Sorted elements:\n");
+    for(i=0;i<n;i++)
+    printf("%d ",a[i]);
+    printf("\nTime = %f sec",(double)(e-s)/CLOCKS_PER_SEC);
+    return 0;
+}
