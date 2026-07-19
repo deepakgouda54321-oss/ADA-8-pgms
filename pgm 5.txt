@@ -1,0 +1,29 @@
+#include<stdio.h>
+int a[11][11],in[11],n;
+int source(){
+    for(int i=1;i<=n;i++)
+    if(in[i]==0)
+    return i;
+    return -1;
+}
+int main(){
+    int i,j,s;
+    printf("Enter the number of vertices:");
+    scanf("%d",&n);
+    printf("Enter the adjecency matrix:\n");
+    for(i=1;i<=n;i++)
+    for(j=1;j<=n;j++){
+        scanf("%d",&a[i][j]);
+        if(a[i][j])
+        in[j]++;
+    }
+    printf("Topological Order:");
+    while((s=source())!=-1){
+        printf("%d",&s);
+        in[s]=-1;
+        for(j=1;j<=n;j++)
+        if(a[s][j])
+        in[j]--;
+    }
+    return 0;
+}
